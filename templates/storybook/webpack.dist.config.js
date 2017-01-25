@@ -1,13 +1,13 @@
 'use strict'
 
-const path = require('path')
+const { join } = require('path')
 const webpack = require('webpack')
 const validate = require('webpack-validator')
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = validate({
-  entry: path.resolve('.', 'src', 'index.js'),
+  entry: join(__dirname, 'src', 'index.js'),
 
   output: {
     path: 'dist',
@@ -28,12 +28,12 @@ module.exports = validate({
       {
         test: /\.js$/,
         loader: 'babel',
-        exclude: /node_modules/
+        include: join(__dirname, '..', 'src')
       },
       {
-        test: /\.css?$/,
+        test: /\.css$/,
         loader: ExtractTextPlugin.extract('style', 'css'),
-        include: path.resolve(__dirname, '..')
+        include: join(__dirname, '..', 'src')
       }
     ]
   },

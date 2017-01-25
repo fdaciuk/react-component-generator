@@ -12,9 +12,9 @@ module.exports = {
     }],
 
     loaders: [{
-      test: /\.css?$/,
-      loaders: ['style', 'css'],
-      include: path.resolve(__dirname, '..')
+      test: /\.css$/,
+      loaders: ['style-loader', 'css-loader'],
+      include: path.resolve(__dirname, '..', 'src')
     }]
   }
 }
