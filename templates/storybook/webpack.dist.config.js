@@ -12,6 +12,7 @@ module.exports = validate({
   output: {
     path: 'dist',
     filename: '<%= camelName %>.js',
+    library: '<%= camelName %>',
     libraryTarget: 'umd'
   },
 
