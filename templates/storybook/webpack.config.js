@@ -1,20 +1,20 @@
 'use strict'
 
-const path = require('path')
+const { join } = require('path')
 
 module.exports = {
   module: {
     preLoaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      include: path.resolve(__dirname, '..'),
-      loader: 'eslint'
+      include: join(__dirname, '..'),
+      loader: 'eslint-loader'
     }],
 
     loaders: [{
       test: /\.css$/,
       loaders: ['style-loader', 'css-loader'],
-      include: path.resolve(__dirname, '..', 'src')
+      include: join(__dirname, '..', 'src')
     }]
   }
 }
