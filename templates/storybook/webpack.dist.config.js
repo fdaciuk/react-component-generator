@@ -20,7 +20,7 @@ module.exports = validate({
     preLoaders: [
       {
         test: /\.js$/,
-        loader: 'eslint',
+        loader: 'eslint-loader',
         exclude: /node_modules/
       }
     ],
@@ -28,12 +28,12 @@ module.exports = validate({
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         include: join(__dirname, '..', 'src')
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', 'css'),
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
         include: join(__dirname, '..', 'src')
       }
     ]
