@@ -6,6 +6,15 @@ const validate = require('webpack-validator')
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+const personareModules = (...newPath) => {
+  return join(__dirname, '..', 'node_modules', '@personare', ...newPath)
+}
+
+const sameKeyAndValue = (object, key) => {
+  object[key] = key
+  return object
+}
+
 module.exports = validate({
   entry: join(__dirname, '..', 'src', 'index.js'),
 
@@ -29,20 +38,26 @@ module.exports = validate({
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: join(__dirname, '..', 'src')
+        include: [
+          join(__dirname, '..', 'src'),
+          personareModules()
+        ]
       },
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
-        include: join(__dirname, '..', 'src')
+        include: [
+          join(__dirname, '..', 'src'),
+          personareModules()
+        ]
       }
     ]
   },
 
-  externals: {
+  externals: [
     'react': 'react',
     'react-dom': 'react-dom'
-  },
+  ].reduce(sameKeyAndValue, {}),
 
   plugins: [
     new ExtractTextPlugin('<%= camelName %>.css'),
