@@ -55,8 +55,8 @@ module.exports = validate({
   },
 
   externals: [
-    'react': 'react',
-    'react-dom': 'react-dom'
+    'react',
+    'react-dom'
   ].reduce(sameKeyAndValue, {}),
 
   plugins: [
